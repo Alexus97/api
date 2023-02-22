@@ -1,16 +1,19 @@
 const express = require('express')
 const router = express.Router()
-const {getItems, getItem, createItems, deleteItems, updateItems} = require('../controlles/users')
+const checkOrigin = require('../middleware/origin')
+const {getItems, getItem, createItem, deleteItem, updateItem} = require('../controlles/users')
 
-router.get('/', getItems)
+//Todo: localhost/users/ ---> LISTA
+router.get('/', checkOrigin, getItems)
 
-router.get('/:id', getItem)
+//Todo: localhost/users/:id ---> DETALLE
+router.get('/:id', checkOrigin, getItem)
 
-router.post('/', createItems)
+router.post('/', checkOrigin, createItem)
 
-router.patch('/:id', updateItems)
+router.patch('/:id', updateItem)
 
-router.delete('/:id', deleteItems)
+router.delete('/:id', deleteItem)
 
 
 module.exports = router

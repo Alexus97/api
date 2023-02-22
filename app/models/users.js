@@ -9,11 +9,11 @@ const UserScheme = new mongoose.Schema({
     },
     email: {
         type: String
-    },
+    }
 },
     {
         timestamps: true,
         versionKey: false
     })
 
-module.exports = mongoose('users', UserScheme)
+module.exports = mongoose.model('users', UserScheme)

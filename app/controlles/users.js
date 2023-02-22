@@ -1,21 +1,38 @@
-const getItems = () => {
+const {httpError} = require('../helpers/handleError')
+const userModel = require('../models/users')
+const getItems = async (req, res) => { 
+    try {
+        const listAll = await userModel.find({})
+        res.send({data: resDetail})
+    } catch (e) {
+        httpError(res, e)
+    }
 
 }
 
-const getItem = () => {
+const getItem = (req, res) => {
+
+}
+
+const createItem= async (req, res) => {
+    try {
+        const {name, age, email} = req.body
+        const resDetail = await userModel.create({
+            name, age, email
+        })
+        res.send({data: resDetail})
+    } catch (e) {
+        httpError(res, e)
+    }
     
 }
 
-const createItems= () => {
+const updateItem = (req, res) => {
     
 }
 
-const updateItems = () => {
+const deleteItem = (req, res) => {
     
 }
 
-const deleteItems = () => {
-    
-}
-
-module.exports = {getItems, getItem, deleteItems, createItems, updateItems}
+module.exports = {getItem, getItems, deleteItem, createItem, updateItem}
